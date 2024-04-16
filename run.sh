@@ -28,9 +28,6 @@ else
         arm64|aarch64)
             FILENAME="app-linux-arm64.tar.gz"
             ;;
-        i386)
-            FILENAME="app-linux-386.tar.gz"
-            ;;
         armv8l|armv7l|armv6l)
             FILENAME="app-linux-arm32.tar.gz"
             ;;
