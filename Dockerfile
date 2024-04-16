@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:rolling
 
 LABEL author="XternA"
 LABEL description="Unofficial docker image of GaGaNode."
