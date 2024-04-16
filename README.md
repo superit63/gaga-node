@@ -18,7 +18,7 @@ Variable | Description | Mandatory |
 Via `compose.yml`
 ```yaml
 services:
-  spide:
+  gaganode:
     container_name: gaga-node
     image: xterna/gaga-node
     restart: unless-stopped
