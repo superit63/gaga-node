@@ -17,8 +17,6 @@ Variable | Description | Mandatory |
 ### Docker Compose
 Via `compose.yml`
 ```yaml
-version: '3'
-
 services:
   spide:
     container_name: gaga-node
@@ -33,7 +31,7 @@ docker compose up -d
 ```
 
 ### Docker run
-```yaml
+```sh
 docker run -d --restart unless-stopped --name gaga-node -e TOKEN=<YOUR_TOKEN> xterna/gaga-node
 ```
 This will start the application in the background. The alias assigned is `spide`.
