@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:20.04
 
 LABEL author="XternA"
 LABEL description="Unofficial docker image of GaGaNode."
