@@ -34,4 +34,4 @@ docker compose up -d
 ```sh
 docker run -d --restart unless-stopped --name gaga-node -e TOKEN=<YOUR_TOKEN> xterna/gaga-node
 ```
-This will start the application in the background. The alias assigned is `spide`.
+This will start the application in the background. The alias assigned is `gaga-node`.
