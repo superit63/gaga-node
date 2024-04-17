@@ -16,7 +16,7 @@ if [ -d ./apphub-linux* ]; then
     sudo ./apphub log
     sudo ./apps/gaganode/gaganode log
     echo
-    cat ./apps/gaganode/user_conf/default.toml
+    echo "Token: $TOKEN"
 else
     CPU_ARCH=$(uname -m)
     LINK="https://assets.coreservice.io/public/package/60/app-market-gaga-pro/1.0.4/app-market-gaga-pro-1_0_4.tar.gz"
@@ -66,5 +66,5 @@ else
     sudo ./apphub log
     sudo ./apps/gaganode/gaganode log
     echo
-    cat ./apps/gaganode/user_conf/default.toml
+    echo "Token: $TOKEN"
 fi
