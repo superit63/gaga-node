@@ -42,6 +42,7 @@ else
 
     echo "CPU Arch: $CPU_ARCH"
     echo "Download link: $LINK"
+    echo "Binary: $FILENAME"
     echo
     echo "Downloading binary..."
 
@@ -61,6 +62,8 @@ else
     sudo ./apphub status
     sudo ./apps/gaganode/gaganode config set --token="$TOKEN"
     sudo ./apphub restart
+    sudo ./apphub status
+    sudo ./apphub log
     sudo ./apps/gaganode/gaganode log
     echo
     cat ./apps/gaganode/user_conf/default.toml
