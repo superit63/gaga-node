@@ -12,8 +12,9 @@ if [ -d ./apphub-linux* ]; then
     cd ./apphub-linux* || exit 1
 
     sudo ./apphub service start
-    sudo ./apphub log
+    sleep 15
     sudo ./apphub status
+    sudo ./apphub log
     sudo ./apps/gaganode/gaganode log
     echo
     echo "Token: $TOKEN"
@@ -62,8 +63,9 @@ else
     sudo ./apphub status
     sudo ./apps/gaganode/gaganode config set --token="$TOKEN"
     sudo ./apphub restart
-    sudo ./apphub log
+    sleep 15
     sudo ./apphub status
+    sudo ./apphub log
     sudo ./apps/gaganode/gaganode log
     echo
     echo "Token: $TOKEN"
