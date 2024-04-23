@@ -12,7 +12,7 @@ if [ -d ./apphub-linux* ]; then
     cd ./apphub-linux* || exit 1
 
     sudo ./apphub service start
-    sleep 15
+    sleep 60
     sudo ./apphub status
     sudo ./apphub log
     sudo ./apps/gaganode/gaganode log
