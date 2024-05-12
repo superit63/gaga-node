@@ -20,26 +20,31 @@ if [ -d ./apphub-linux* ]; then
     echo "Token: $TOKEN"
 else
     CPU_ARCH=$(uname -m)
-    LINK="https://assets.coreservice.io/public/package/60/app-market-gaga-pro/1.0.4/app-market-gaga-pro-1_0_4.tar.gz"
 
     case "$CPU_ARCH" in
         x86_64)
             FILENAME="app-linux-amd64.tar.gz"
+            TYPE=60
             ;;
         arm64|aarch64)
             FILENAME="app-linux-arm64.tar.gz"
+            TYPE=61
             ;;
         i386)
             FILENAME="app-linux-386.tar.gz"
+            TYPE=70
             ;;
         armv8l|armv7l|armv6l)
             FILENAME="app-linux-arm32.tar.gz"
+            TYPE=72
             ;;
         *)
             echo "Your CPU type is not supported."
             exit 1
             ;;
     esac
+
+    LINK="https://assets.coreservice.io/public/package/$TYPE/app-market-gaga-pro/1.0.4/app-market-gaga-pro-1_0_4.tar.gz"
 
     echo "CPU Arch: $CPU_ARCH"
     echo "Download link: $LINK"
