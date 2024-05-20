@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# ASCII art
 echo '
    ____          ____         _   _             _
   / ___|  __ _  / ___|  __ _ | \ | |  ___    __| |  ___
@@ -9,20 +8,14 @@ echo '
   \____| \__,_| \____| \__,_||_| \_| \___/  \__,_| \___|
 '
 
-# Check if apphub-linux directory exists
 if [ -d ./apphub-linux* ]; then
     cd ./apphub-linux* || exit 1
 
-    # Start apphub service
     sudo ./apphub service start
     sleep 60
-
-    # Show apphub status and log
     sudo ./apphub status
     sudo ./apphub log
     sudo ./apps/gaganode/gaganode log
-
-    # Print token
     echo
     echo "Token: $TOKEN"
 else
@@ -30,8 +23,8 @@ else
 
     case "$CPU_ARCH" in
         x86_64)
-            FILENAME="gaganode_pro-0_0_300.tar.gz"
-            TYPE=66
+            FILENAME="app-linux-amd64.tar.gz"
+            TYPE=60
             ;;
         arm64|aarch64)
             FILENAME="app-linux-arm64.tar.gz"
@@ -51,7 +44,7 @@ else
             ;;
     esac
 
-    LINK="https://assets.coreservice.io/public/package/66/gaganode_pro/0.0.300/gaganode_pro-0_0_300.tar.gz"
+    LINK="https://assets.coreservice.io/public/package/$TYPE/app-market-gaga-pro/1.0.4/app-market-gaga-pro-1_0_4.tar.gz"
 
     echo "CPU Arch: $CPU_ARCH"
     echo "Download link: $LINK"
@@ -59,52 +52,26 @@ else
     echo
     echo "Downloading binary..."
 
-    # Download binary
-    if ! sudo curl -o "$FILENAME" "$LINK"; then
-        echo "Error: Failed to download binary."
-        exit 1
-    fi
-
-    # Extract binary
-    if ! sudo tar -zxf "$FILENAME"; then
-        echo "Error: Failed to extract binary."
-        exit 1
-    fi
-
-    # Remove downloaded tar.gz file
-    sudo rm -f "$FILENAME"
-
+    sudo curl -o $FILENAME $LINK
+    sudo tar -zxf $FILENAME
+    sudo rm -f $FILENAME
     cd ./apphub-linux* || exit 1
 
-    # Remove existing apphub service
     sudo ./apphub service remove
-
-    # Install apphub service
     sudo ./apphub service install
-
-    # Start apphub service
     sudo ./apphub service start
 
     echo
     echo "Bootstrapping 30s timeout..."
     sleep 30
 
-    # Show apphub status
     sudo ./apphub status
-
-    # Set token for gaganode
     sudo ./apps/gaganode/gaganode config set --token="$TOKEN"
-
-    # Restart apphub service
     sudo ./apphub restart
     sleep 15
-
-    # Show apphub status and log
     sudo ./apphub status
     sudo ./apphub log
     sudo ./apps/gaganode/gaganode log
-
-    # Print token
     echo
     echo "Token: $TOKEN"
 fi
