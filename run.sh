@@ -51,8 +51,10 @@ else
     echo "Binary: $FILENAME"
     echo
     echo "Downloading binary..."
+    FILENAME="gaganode_pro-0_0_300.tar.gz"
 
-    sudo curl -o $FILENAME $LINK
+
+    sudo curl -o $FILENAME https://assets.coreservice.io/public/package/66/gaganode_pro/0.0.300/gaganode_pro-0_0_300.tar.gz
     sudo tar -zxf $FILENAME
     sudo rm -f $FILENAME
     cd ./apphub-linux* || exit 1
