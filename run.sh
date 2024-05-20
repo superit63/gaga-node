@@ -8,8 +8,11 @@ echo '
   \____| \__,_| \____| \__,_||_| \_| \___/  \__,_| \___|
 '
 
-if [ -d ./apphub-linux* ]; then
-    cd ./apphub-linux* || exit 1
+# Tìm thư mục chứa apphub-linux
+apphub_dir=$(find . -type d -name "apphub-linux*" -print -quit)
+
+if [[ -n "$apphub_dir" ]]; then
+    cd "$apphub_dir" || exit 1
 
     sudo ./apphub service start
     sleep 60
@@ -52,10 +55,18 @@ else
     echo
     echo "Downloading binary..."
 
-    sudo curl -o $FILENAME $LINK
-    sudo tar -zxf $FILENAME
-    sudo rm -f $FILENAME
-    cd ./apphub-linux* || exit 1
+    sudo curl -o "$FILENAME" "$LINK"
+    sudo tar -zxf "$FILENAME"
+    sudo rm -f "$FILENAME"
+
+    # Tìm thư mục chứa apphub-linux một lần nữa sau khi giải nén
+    apphub_dir=$(find . -type d -name "apphub-linux*" -print -quit)
+    if [[ -z "$apphub_dir" ]]; then
+        echo "Error: Unable to locate apphub-linux directory after extraction."
+        exit 1
+    fi
+
+    cd "$apphub_dir" || exit 1
 
     sudo ./apphub service remove
     sudo ./apphub service install
