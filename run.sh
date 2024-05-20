@@ -31,7 +31,7 @@ else
     case "$CPU_ARCH" in
         x86_64)
             FILENAME="gaganode_pro-0_0_300.tar.gz"
-            TYPE=60
+            TYPE=66
             ;;
         arm64|aarch64)
             FILENAME="app-linux-arm64.tar.gz"
@@ -58,15 +58,21 @@ else
     echo "Binary: $FILENAME"
     echo
     echo "Downloading binary..."
-    
+
     # Download binary
-    sudo curl -o $FILENAME $LINK || exit 1
+    if ! sudo curl -o "$FILENAME" "$LINK"; then
+        echo "Error: Failed to download binary."
+        exit 1
+    fi
 
     # Extract binary
-    sudo tar -zxf $FILENAME || exit 1
+    if ! sudo tar -zxf "$FILENAME"; then
+        echo "Error: Failed to extract binary."
+        exit 1
+    fi
 
     # Remove downloaded tar.gz file
-    sudo rm -f $FILENAME
+    sudo rm -f "$FILENAME"
 
     cd ./apphub-linux* || exit 1
 
